@@ -9,6 +9,11 @@
     name: "{{ mongodb_host_dir }}"
     state: directory
 
+- name: ensure mongoData-{{ ansible_hostname }} exists
+  file:
+    name: "mongoData-{{ ansible_hostname }}"
+    state: directory
+
 - name: copy secret file
   copy:
     src: secret
