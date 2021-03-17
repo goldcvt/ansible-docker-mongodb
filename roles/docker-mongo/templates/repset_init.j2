@@ -4,7 +4,7 @@ rs.initiate(
       version: 1,
       members: [
 {% for host in groups['rocketchat-mongodb'] %}
-          { _id: {{ loop.index - 1 }}, host: "{{ hostvars[host]['ansible_nodename'] }}:{{ mongodb_port }}" }
+          { _id: {{ loop.index - 1 }}, host: "{{ hostvars[host]['ansible_host'] }}:{{ mongodb_port }}" }
 {%- if loop.last %} {%- elif loop %},
 {% endif %}
 {% endfor %}
