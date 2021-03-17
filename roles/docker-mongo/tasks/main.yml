@@ -30,8 +30,8 @@
   file:
     name: "{{ mongodb_logdir }}"
     state: directory
-    owner: 999
-    group: 999
+    owner: "999"
+    group: "999"
     mode: 0755
 
 - name: start mongodb containers
