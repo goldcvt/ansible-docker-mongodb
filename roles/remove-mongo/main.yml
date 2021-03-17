@@ -1,0 +1,11 @@
+---
+- hosts: rocketchat-mongodb
+  become: true
+  
+  tasks:
+    - name:
+      command: docker rm -v "{{ docker_instance_name }}"
+  
+    - name: Show logs
+      file:
+        _terms: "{{ mongodb_logdir }}"
