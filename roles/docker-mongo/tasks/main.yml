@@ -8,11 +8,6 @@
   file:
     name: "{{ mongodb_host_dir }}"
     state: directory
-
-- name: ensure mongoData-{{ ansible_hostname }} exists
-  file:
-    name: "mongoData-{{ ansible_hostname }}"
-    state: directory
     
 - name: Create keyfile
   shell: openssl rand -base64 741 > "{{ mongodb_host_dir }}/secret"
