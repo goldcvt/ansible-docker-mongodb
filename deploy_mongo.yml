@@ -1,4 +1,4 @@
-- hosts: mongo-servers
+- hosts: rocketchat-mongodb
   roles:
     - docker-mongo
   user: centos
