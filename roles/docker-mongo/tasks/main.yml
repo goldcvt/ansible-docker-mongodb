@@ -8,14 +8,23 @@
   file:
     name: "{{ mongodb_host_dir }}"
     state: directory
-
-- name: copy secret file
-  copy:
-    src: secret
-    dest: "{{ mongodb_host_dir }}/secret"
-    owner: 999
-    group: 999
-    mode: 0400
+    
+- name: Create keyfile
+  shell: openssl rand -base64 741 > "{{ mongodb_host_dir }}/secret"
+      
+- name: Chmod the keyfile
+  shell: chmod 600 "{{ mongodb_host_dir }}/secret"
+      
+- name: Change owner to Mongo-container user
+  shell: chown 999:999 "{{ mongodb_host_dir }}/secret"
+  
+#- name: copy secret file
+#  copy:
+#    src: secret
+#    dest: "{{ mongodb_host_dir }}/secret"
+#    owner: 999
+#    group: 999
+#    mode: 0400
 
 - name: ensure {{ mongodb_logdir }} exist
   file:
@@ -28,7 +37,7 @@
 - name: start mongodb containers
   docker_container:
     name: "{{ docker_instance_name }}"
-    image: "docker.io/mongo:{{ mongo_version }}"
+    image: "mongo:{{ mongo_version }}"
     state: started
     command: "mongod --replSet {{ replica_set_name }} --logpath {{mongodb_logdir}}/mongodb.log --logappend --keyFile {{ mongodb_datadir}}/secret"
     volumes:
