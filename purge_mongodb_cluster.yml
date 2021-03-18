@@ -11,7 +11,3 @@
       
     - name: Remove orphaned containers
       command: docker volume prune --force
-  
-    - name: Show logs
-      file:
-        _terms: "{{ mongodb_logdir }}"
