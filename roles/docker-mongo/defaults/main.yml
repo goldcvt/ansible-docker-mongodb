@@ -5,3 +5,5 @@ mongodb_host_dir: /etc/mongo
 mongodb_datadir: /data/db
 mongodb_logdir: /var/log/mongodb
 replica_set_name: rs0
+oplog_size: 128
+local_secret_path: /etc/mongodb/secret
