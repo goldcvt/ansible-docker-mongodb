@@ -1,3 +1,0 @@
----
-dependencies:
-  - "{{ main-deploy-folder }}/ansible/install_docker.yaml"
