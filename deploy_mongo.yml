@@ -2,6 +2,5 @@
   any_errors_fatal: true
   roles:
     - docker-mongo
-  user: centos
   become: true
   become_method: sudo
